@@ -10,7 +10,7 @@ const Query = (props) => {
     }
 
     return (
-        <div style={{width:"100%"}} className={"tw-p-10"}>
+        <div style={{width: '80vw'}}>
             <div>
                 Querying {filename}
             </div>
