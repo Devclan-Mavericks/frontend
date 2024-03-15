@@ -2,33 +2,49 @@ body{
     margin:  0;
     padding: 0;
 }
+ .container{
+    border-radius: 10px;
+    border: 1px dashed;
+    padding: 30px;
+    height: 300px;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+ }
 .filename{
     color: gray ;
-    padding-left: 30vw;
+    /* padding-left: 30vw; */
 }
 .upload{
-    padding-left: 30vw;
+    /* padding-left: 30vw; */
     justify-content: center;
     
 }
 .attach{
-    padding-left: 250px;
+   align-self: center;
+   justify-self: center;
+   padding-left: 50px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 .uploadfolder{
     margin: 20px;
+    padding-left: 20px;
 }
 .choose{
-  padding-left: 170px;
+   padding-right: 10px;
   margin-top: 20px;
 }
 .input{
     color: rgb(0, 0, 0);
-    padding-left: 250px;
+    /* padding-left: 250px; */
     justify-content: center;
 }
 .svgfolder{
-    padding-left: 300px;
-    margin-top: 0;
+    padding-left: 60px;
+   margin: 8%;
+    
+}
+.appjs{
+    display: flex;
 }

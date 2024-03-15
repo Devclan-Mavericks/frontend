@@ -14,8 +14,9 @@ const Upload = () => {
 
     return(
 
-        <div class='screen-division' style={{width: '70vw'}}>
-        <h1 class="filename"  >csv/file0012</h1>
+        <div class='screen-division' style={{width: '80vw', display:'flex', alignItems:'center', justifyContent:'center'}} >
+            <div class="container">
+        
 
 
         <div  class="upload">
@@ -26,7 +27,7 @@ const Upload = () => {
 
                 <svg
                         class="svgfolder"
-                        // className="shrink-0 w-6 h-6  relative overflow-visible cursor-pointer "
+                        // className="shrink-0 w-6 h-6    "
                         width="24"
                         height="25"
                         viewBox="0 0 24 25"
@@ -60,6 +61,7 @@ const Upload = () => {
                     </div>
                   </div>
                 </div>
+              </div>
               </div>
         </div>
 
