@@ -1,6 +1,7 @@
-import './App.css';
+import { useState } from 'react';
 import Upload from './uploadSection/Upload';
 import Sidebar from './sidebar/Sidebar';
+import Query from './querySection/Query';
 
 function App() {
   const [uploadSection, setUploadSection] = useState(true);
