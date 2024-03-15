@@ -1,0 +1,34 @@
+body{
+    margin:  0;
+    padding: 0;
+}
+.filename{
+    color: gray ;
+    padding-left: 30vw;
+}
+.upload{
+    padding-left: 30vw;
+    justify-content: center;
+    
+}
+.attach{
+    padding-left: 250px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.uploadfolder{
+    margin: 20px;
+}
+.choose{
+  padding-left: 170px;
+  margin-top: 20px;
+}
+.input{
+    color: rgb(0, 0, 0);
+    padding-left: 250px;
+    justify-content: center;
+}
+.svgfolder{
+    padding-left: 300px;
+    margin-top: 0;
+}
