@@ -1,5 +1,6 @@
 import React from "react";
 import '../uploadSection/upload.css'
+import toast, { Toaster } from 'react-hot-toast';
 
 const Upload = () => {
 
@@ -9,6 +10,12 @@ const Upload = () => {
         // Process the files as needed
         console.log('Files uploaded:', files);
       };
+
+      const submit =() => {
+        toast.success('Successfully!');
+      }
+
+      
 
       var fu1 = document.getElementById("FileInput");
 
@@ -61,7 +68,10 @@ const Upload = () => {
                     </div>
                   </div>
                 </div>
+                <button class="button" onClick={submit}>Submit</button>
               </div>
+
+
               </div>
         </div>
 
