@@ -1,6 +1,7 @@
 import React from "react";
 
 function Name ({filename, date}) {
+    console.log("filename: ", filename, "date: ", date)
     if(!filename || !date) {
         return (
             <div>

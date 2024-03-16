@@ -22,22 +22,23 @@ const Upload = () => {
   };
 
   const submit = () => {
-    /*const backendUrl = "#";
+    const backendUrl = "#";
     try {
-      //let response = await Axios.post(backendUrl, files);
-      //if(response.status !== 200) {
+      // let response = await Axios.post(backendUrl, files);
+      // if(response.status !== 200) {
       //  toast.error(`Failed to upload file \n ${response.data}`)
-      //}
+      // }
 
-      const newFile = { filename: "Dave the diver", date: new Date().getFullYear.toString() }
-      setfilelist({...fileList, ...newFile})
-      console.log(fileList)
+      const newFile = { filename: "Dave the diver", date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}` }
+      setfilelist(
+        (prev) =>( {...prev, ...newFile}))
       toast.success('Successfully!');
-    } catch(error) {
+    } 
+    catch(error) {
       console.error("Failed to submit: ", error);
       toast.error("Network error")
-    }*/
-    toast.success("Successful!");
+    }
+    // toast.success("Successful!");
     
   }
 
@@ -101,9 +102,7 @@ const Upload = () => {
       </div>
 
       <div>
-        {Object.entries(fileList).map(([key, value]) => {
-          return <Name key={key} filename={value.filename} date={value.date}/>
-        })}
+          <Name filename={fileList.filename} date={fileList.date}/>
       </div>
     </div>
 
