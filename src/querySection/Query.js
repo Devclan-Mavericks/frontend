@@ -1,9 +1,11 @@
 import { useState } from "react";
 import QueryResponse from "./QueryResponse";
 import toast from "react-hot-toast";
+import Arrow from "../svg/Arrow";
+import Circle from "../svg/Circle";
 
 const Query = (props) => {
-    const {filename} = props;
+    const { filename } = props;
 
     const [query, setQuery] = useState("");
     const [queryList, setQueryList] = useState([]);
@@ -12,14 +14,12 @@ const Query = (props) => {
     const handleQuery = async (e) => {
         //send query to backend
         e.preventDefault();
-        setQueryList([...queryList, query]);
-        setQuery("");
 
         const requestBody = new FormData();
         requestBody.append("filename", filename);
         requestBody.append("query", query);
 
-        if(!query) {
+        if (!query) {
             return toast.error("Send a valid query");
         }
 
@@ -31,34 +31,40 @@ const Query = (props) => {
                 body: requestBody
             })
 
+            if (response.status !== 200) {
+                return toast.error("Failed to process query");
+            }
+
             const result = await response.json();
             console.log(result);
-        }catch(error) {
+            setQueryList([...queryList, query]);
+            setQuery("");
+        } catch (error) {
             console.error("Problem submitting request: ", error);
             toast.error("Error submitting request");
-        } finally{
+        } finally {
             setIsSubmitting(false);
         }
-        
+
     }
-    
+
 
     return (
-        <div style={{maxHeight:"100vh", width:'80vw', overflow:"scroll"}}>
-            <div className={"tw-bg-gray-400 tw-p-5"}>
+        <div style={{ maxHeight: "100vh", width: '80vw', overflow: "scroll" }}>
+            <div style={{ borderBottomStyle: "solid", borderWidth: "2px" }} className={"tw-p-5 tw-mx-3"}>
                 Querying {filename}
             </div>
             <div className={"tw-pl-4"}>
                 {queryList.map((query, index) => {
-                    return <QueryResponse key={index} query={query} response={query}/>
+                    return <QueryResponse key={index} query={query} response={query} />
                 })}
-                
+
             </div>
 
-            <div style={{height:"10%"}} className={"tw-flex tw-justify-center tw-flex-col-reverse"}>
+            <div style={{ height: "10%" }} className={"tw-flex tw-justify-center tw-flex-col-reverse"}>
                 <form onSubmit={handleQuery} className={"tw-flex tw-justify-center"}>
-                    <input style={{width:"800px"}} type="text" value={query} onChange={(e) => setQuery(e.target.value)}/>
-                    <button style={{width:"30px"}} type="submit"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="0.15" d="M20 4L3 11L10 14L13 21L20 4Z" fill="#007AD3"></path> <path d="M20 4L3 11L10 14L13 21L20 4Z" stroke="#007AD3" stroke-width="1.5" stroke-linejoin="round"></path> </g></svg></button>
+                    <input style={{ width: "800px" }} type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
+                    <button style={{ width: "30px" }} type="submit">{isSubmitting ? <Circle /> : <Arrow />}</button>
                 </form>
             </div>
         </div>
