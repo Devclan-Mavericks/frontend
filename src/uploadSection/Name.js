@@ -4,7 +4,7 @@ function Name ({filename, date}) {
     if(!filename || !date) {
         return (
             <div>
-                
+
             </div>
         )
     }
@@ -16,6 +16,6 @@ function Name ({filename, date}) {
             <p>{date}</p>
 
         </div>
-    )
+    )       
 }
 export default Name
