@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import '../uploadSection/upload.css'
-import toast from 'react-hot-toast';
+import "../uploadSection/upload.css";
+import toast from "react-hot-toast";
 import Name from "./Name";
 
 const Upload = ({setFilename, setQuerySection, setUploadSection}) => {
@@ -25,6 +25,13 @@ const Upload = ({setFilename, setQuerySection, setUploadSection}) => {
 
   const submit = async () => {
     const backendUrl = "https://flask-end-vp25.onrender.com/upload";
+
+    const newFile = {
+      filename: "Dave the diver",
+      date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+    };
+    setfilelist((prev) => ({ ...prev, ...newFile }));
+
     try {
       setIsSubmitting(true)
       const response = await fetch(backendUrl, {
@@ -53,23 +60,23 @@ const Upload = ({setFilename, setQuerySection, setUploadSection}) => {
 
   }
 
-
-
   var fu1 = document.getElementById("FileInput"); //Little Dave
 
   return (
-
-    <div class='screen-division' style={{ width: '80vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
+    <div
+      class="screen-division"
+      style={{
+        width: "80%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <div class="container">
-
-
-
         <div class="upload">
-          <div class='attach' >
-            Kindly attach  csv file
-          </div>
-          <div class="uploadfolder" >
-
+          <div class="attach">Kindly attach csv file</div>
+          <div class="uploadfolder">
             <svg
               class="svgfolder"
               // className="shrink-0 w-6 h-6    "
@@ -88,7 +95,7 @@ const Upload = ({setFilename, setQuerySection, setUploadSection}) => {
                 strokeLinejoin="round"
               />
             </svg>
-            <div  >
+            <div>
               <label htmlFor="fileInput" class="input">
                 <input
                   type="file"
@@ -97,12 +104,9 @@ const Upload = ({setFilename, setQuerySection, setUploadSection}) => {
                   accept="text/csv"
                   onChange={(e) => handleFileUpload(e)}
                 />
-
               </label>
-              <div class='choose' >
-                <div >
-                  Drag &amp; drop or  click to upload  csv file
-                </div>
+              <div class="choose">
+                <div>Drag &amp; drop or click to upload csv file</div>
               </div>
             </div>
           </div>
@@ -113,22 +117,13 @@ const Upload = ({setFilename, setQuerySection, setUploadSection}) => {
               </button> :
               <button className="button" onClick={submit}>Submit</button>
           }
-
         </div>
-
-
       </div>
 
       <div>
-        {Object.entries(fileList).map(([key, value]) => {
-          return <Name key={key} filename={value.filename} date={value.date} />
-        })}
+        <Name filename={fileList.filename} date={fileList.date} />
       </div>
     </div>
-
-
-
-
-  )
-}
-export default Upload
+  );
+};
+export default Upload;
