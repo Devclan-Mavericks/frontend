@@ -1,6 +1,15 @@
 import React from 'react';
 
 function QueryResponse({ query, response }) {
+
+  if(!query || !response) {
+    return (
+      <div>
+        {/*Nothing goes here lol*/}
+      </div>
+    )
+  }
+
   return (
     <div>
       <h2>Query:</h2>

@@ -1,23 +1,31 @@
 import { useState } from "react";
+import QueryResponse from "./QueryResponse";
 
 const Query = (props) => {
     const {filename} = props;
 
     const [query, setQuery] = useState("");
 
-    const handleQuery = () => {
+    const [queryList, setQueryList] = useState([]);
+
+    const handleQuery = (e) => {
         //send query to Lord
+        e.preventDefault();
+        setQueryList([...queryList, query]);
+        setQuery("");
     }
     
 
     return (
-        <div style={{width:"100%"}} className={"tw-p-10"}>
-            <div>
+        <div style={{width:'80vw', overflow:"scroll"}}>
+            <div className={"tw-bg-gray-400 tw-p-5"}>
                 Querying {filename}
             </div>
-            <div>
-                {/*Query-Response components*/}
-                Hello responses
+            <div className={"tw-pl-4"}>
+                {queryList.map((query, index) => {
+                    return <QueryResponse key={index} query={query} response={query}/>
+                })}
+                
             </div>
 
             <div style={{height:"100%"}} className={"tw-flex tw-justify-center tw-flex-col-reverse"}>
