@@ -1,19 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import '../uploadSection/upload.css'
 import toast from 'react-hot-toast';
 import Name from "./Name";
+import { Axios } from "axios";
 
 const Upload = () => {
 
-  const handleFileUpload = (e) => {
+  const [fileList, setfilelist] = useState({
+    filename: "",
+    date: ""
+  })
+
+  
+
+  const handleFileUpload = async (e) => {
     // Logic to handle file upload
     const files = e.target.files;
     // Process the files as needed
     console.log('Files uploaded:', files);
+    
   };
 
   const submit = () => {
-    toast.success('Successfully!');
+    /*const backendUrl = "#";
+    try {
+      //let response = await Axios.post(backendUrl, files);
+      //if(response.status !== 200) {
+      //  toast.error(`Failed to upload file \n ${response.data}`)
+      //}
+
+      const newFile = { filename: "Dave the diver", date: new Date().getFullYear.toString() }
+      setfilelist({...fileList, ...newFile})
+      console.log(fileList)
+      toast.success('Successfully!');
+    } catch(error) {
+      console.error("Failed to submit: ", error);
+      toast.error("Network error")
+    }*/
+    toast.success("Successful!");
+    
   }
 
 
@@ -73,6 +98,12 @@ const Upload = () => {
         </div>
 
 
+      </div>
+
+      <div>
+        {Object.entries(fileList).map(([key, value]) => {
+          return <Name key={key} filename={value.filename} date={value.date}/>
+        })}
       </div>
     </div>
 

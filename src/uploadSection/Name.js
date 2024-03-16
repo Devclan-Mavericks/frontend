@@ -1,6 +1,13 @@
 import React from "react";
 
 function Name ({filename, date}) {
+    if(!filename || !date) {
+        return (
+            <div>
+                
+            </div>
+        )
+    }
     return(
         <div>
             <h2>FileName:</h2>
