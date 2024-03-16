@@ -20,6 +20,13 @@ const Query = (props) => {
         requestBody.append("filename", filename);
         requestBody.append("query", query);
 
+        //send error if no file was uploaded lol
+        if(!filename) {
+            setQuery("");
+            return toast.error("Upload a CSV file first");
+        }
+
+        //reject no query
         if (!query) {
             return toast.error("Send a valid query");
         }
