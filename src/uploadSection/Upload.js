@@ -1,24 +1,20 @@
 import React, { useState } from "react";
-import '../uploadSection/upload.css'
-import toast from 'react-hot-toast';
+import "../uploadSection/upload.css";
+import toast from "react-hot-toast";
 import Name from "./Name";
 import { Axios } from "axios";
 
 const Upload = () => {
-
   const [fileList, setfilelist] = useState({
     filename: "",
-    date: ""
-  })
-
-  
+    date: "",
+  });
 
   const handleFileUpload = async (e) => {
     // Logic to handle file upload
     const files = e.target.files;
     // Process the files as needed
-    console.log('Files uploaded:', files);
-    
+    console.log("Files uploaded:", files);
   };
 
   const submit = () => {
@@ -29,36 +25,36 @@ const Upload = () => {
       //  toast.error(`Failed to upload file \n ${response.data}`)
       // }
 
-      const newFile = { filename: "Dave the diver", date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}` }
-      setfilelist(
-        (prev) =>( {...prev, ...newFile}))
-      toast.success('Successfully!');
-    } 
-    catch(error) {
+      const newFile = {
+        filename: "Dave the diver",
+        date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+      };
+      setfilelist((prev) => ({ ...prev, ...newFile }));
+      toast.success("Successfully!");
+    } catch (error) {
       console.error("Failed to submit: ", error);
-      toast.error("Network error")
+      toast.error("Network error");
     }
     // toast.success("Successful!");
-    
-  }
-
-
+  };
 
   var fu1 = document.getElementById("FileInput"); //Little Dave
 
   return (
-
-    <div class='screen-division' style={{ width: '80vw', display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
+    <div
+      class="screen-division"
+      style={{
+        width: "80%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <div class="container">
-
-
-
         <div class="upload">
-          <div class='attach' >
-            Kindly attach  csv file
-          </div>
-          <div class="uploadfolder" >
-
+          <div class="attach">Kindly attach csv file</div>
+          <div class="uploadfolder">
             <svg
               class="svgfolder"
               // className="shrink-0 w-6 h-6    "
@@ -77,7 +73,7 @@ const Upload = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <div  >
+            <div>
               <label htmlFor="fileInput" class="input">
                 <input
                   type="file"
@@ -86,29 +82,22 @@ const Upload = () => {
                   accept="text/csv"
                   onChange={(e) => handleFileUpload(e)}
                 />
-
               </label>
-              <div class='choose' >
-                <div >
-                  Drag &amp; drop or  click to upload  csv file
-                </div>
+              <div class="choose">
+                <div>Drag &amp; drop or click to upload csv file</div>
               </div>
             </div>
           </div>
-          <button class="button" onClick={submit}>Submit</button>
+          <button class="button" onClick={submit}>
+            Submit
+          </button>
         </div>
-
-
       </div>
 
       <div>
-          <Name filename={fileList.filename} date={fileList.date}/>
+        <Name filename={fileList.filename} date={fileList.date} />
       </div>
     </div>
-
-
-
-
-  )
-}
-export default Upload
+  );
+};
+export default Upload;

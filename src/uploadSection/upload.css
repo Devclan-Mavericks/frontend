@@ -2,6 +2,36 @@ body{
     margin:  0;
     padding: 0;
 }
+
+.Container-name{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    min-width: 200px;
+}
+.pname{
+    display: flex;
+    font-style: bold;
+    font-weight: 400;
+    font-family: 'Times New Roman', Times, serif;
+    /* gap: 10px; */
+}
+.pdate{
+    /* gap:10px; */
+    font-style: bold;
+    font-weight: 400;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    display: flex;
+}
+
+.active{
+    display: flex;
+    color: rgb(0, 0, 0);
+    align-items: center;
+    gap: 5px;
+}
+
  .container{
     border-radius: 10px;
     border: 1px dashed;
@@ -10,7 +40,7 @@ body{
     display: flex; 
     justify-content: center;
     align-items: center;
-    margin-bottom: 400px;
+    /* margin-bottom: 400px; */
     
  }
  
