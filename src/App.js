@@ -10,7 +10,9 @@ function App() {
 
   return (
    <div className={"tw-flex tw-flex-row"}>
-    <Sidebar uploadSection={uploadSection} setUploadSection={setUploadSection} querySection={querySection} setQuerySection={setQuerySection}/>
+    <div>
+      <Sidebar uploadSection={uploadSection} setUploadSection={setUploadSection} querySection={querySection} setQuerySection={setQuerySection}/>
+    </div>
     {uploadSection && <Upload/>}
     {querySection && <Query/>}
     <Toaster position="bottom-center" color="#1dd463" />
