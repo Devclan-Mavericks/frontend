@@ -1,18 +1,44 @@
 import { useState } from "react";
 import QueryResponse from "./QueryResponse";
+import toast from "react-hot-toast";
 
 const Query = (props) => {
     const {filename} = props;
 
     const [query, setQuery] = useState("");
-
     const [queryList, setQueryList] = useState([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleQuery = (e) => {
-        //send query to Lord
+    const handleQuery = async (e) => {
+        //send query to backend
         e.preventDefault();
         setQueryList([...queryList, query]);
         setQuery("");
+
+        const requestBody = new FormData();
+        requestBody.append("filename", filename);
+        requestBody.append("query", query);
+
+        if(!query) {
+            return toast.error("Send a valid query");
+        }
+
+        const backendUrl = "https://flask-end-vp25.onrender.com/query";
+        try {
+            setIsSubmitting(true);
+            const response = await fetch(backendUrl, {
+                method: "POST",
+                body: requestBody
+            })
+
+            const result = await response.json();
+            console.log(result);
+        }catch(error) {
+            console.error("Problem submitting request: ", error);
+            toast.error("Error submitting request");
+        } finally{
+            setIsSubmitting(false);
+        }
         
     }
     
