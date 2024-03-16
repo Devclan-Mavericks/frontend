@@ -15,7 +15,7 @@ const Sidebar = (props) => {
 
     return (
         <div style={{ width: "20dvw", height: "100dvh", backgroundColor: "#03111B" }} className={"tw-flex tw-flex-col tw-text-white"}>
-            <div style={{ width: "100%", alignItems: "center" }} className={"tw-flex tw-flex-row tw-justify-center tw-my-5"}>
+            <div style={{ width: "100%", alignItems: "center", fontSize:"20px" }} className={"tw-flex tw-flex-row tw-justify-center tw-my-5 tw-gap-4"}>
                 <Form />
                 <p>Turnzer</p>
             </div>

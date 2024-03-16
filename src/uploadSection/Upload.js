@@ -17,7 +17,10 @@ const Upload = ({ filename, setFilename, setQuerySection, setUploadSection }) =>
 
   const handleFileUpload = async (e) => {
     const files = e.target.files[0];
+    console.log(files.name)
     requestBody.append("file", files)
+    console.log(requestBody)
+    setFilename(files.name)
   };
 
   const submit = async () => {
@@ -37,12 +40,15 @@ const Upload = ({ filename, setFilename, setQuerySection, setUploadSection }) =>
       })
 
       if (response.status !== 200) {
+        console.log(response)
         return toast.error(`Failed to upload file \n Check the console for details`)
       }
 
       const result = await response.json();
 
-      setFilename(result.filename);
+      if(result.filename !== filename) {
+        return toast.error("Something went wrong \n Upload the file again");
+      }
 
       //update uploaded file list
       const newFile = {

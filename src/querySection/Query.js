@@ -51,8 +51,8 @@ const Query = (props) => {
 
     return (
         <div style={{ maxHeight: "100vh", width: '80vw', overflow: "scroll" }}>
-            <div style={{ borderBottomStyle: "solid", borderWidth: "2px" }} className={"tw-p-5 tw-mx-3"}>
-                Querying {filename}
+            <div style={{ borderBottomStyle: "solid", borderWidth: "2px", fontSize: "30px" }} className={"tw-p-5 tw-mx-3"}>
+                {filename}
             </div>
             <div className={"tw-pl-4"}>
                 {queryList.map((query, index) => {
