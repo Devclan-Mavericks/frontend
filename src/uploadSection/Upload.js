@@ -17,37 +17,26 @@ const Upload = ({ filename, setFilename, setQuerySection, setUploadSection }) =>
 
   const handleFileUpload = async (e) => {
     const files = e.target.files[0];
-    console.log(files.name)
+    console.log(files)
     requestBody.append("file", files)
-    console.log(requestBody)
-    setFilename(files.name)
   };
 
   const submit = async () => {
-    const backendUrl = "https://flask-end-vp25.onrender.com/upload";
+    const backendUrl = "http://127.0.0.1:5000/upload";
 
     try {
       setIsSubmitting(true)
-
-      //reject no upload
-      if (!filename) {
-        return toast.error("Upload a CSV");
-      }
 
       const response = await fetch(backendUrl, {
         method: "POST",
         body: requestBody,
       })
 
+      const result = await response.json();
+
       if (response.status !== 200) {
         console.log(response)
         return toast.error(`Failed to upload file \n Check the console for details`)
-      }
-
-      const result = await response.json();
-
-      if(result.filename !== filename) {
-        return toast.error("Something went wrong \n Upload the file again");
       }
 
       //update uploaded file list
@@ -56,6 +45,8 @@ const Upload = ({ filename, setFilename, setQuerySection, setUploadSection }) =>
         date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
       };
       setFileList((prev) => ({ ...prev, ...newFile }));
+
+      setFilename(result.filename)
 
       toast.success('Successful!');
 

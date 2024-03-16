@@ -10,6 +10,7 @@ const Query = (props) => {
     const [query, setQuery] = useState("");
     const [queryList, setQueryList] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [response, setResponse] = useState([]);
 
     const handleQuery = async (e) => {
         //send query to backend
@@ -23,7 +24,7 @@ const Query = (props) => {
             return toast.error("Send a valid query");
         }
 
-        const backendUrl = "https://flask-end-vp25.onrender.com/query";
+        const backendUrl = "http://127.0.0.1:5000/query";
         try {
             setIsSubmitting(true);
             const response = await fetch(backendUrl, {
@@ -36,7 +37,7 @@ const Query = (props) => {
             }
 
             const result = await response.json();
-            console.log(result);
+            setResponse(result.answer);
             setQueryList([...queryList, query]);
             setQuery("");
         } catch (error) {
@@ -56,7 +57,7 @@ const Query = (props) => {
             </div>
             <div className={"tw-pl-4"}>
                 {queryList.map((query, index) => {
-                    return <QueryResponse key={index} query={query} response={query} />
+                    return <QueryResponse key={index} query={query} response={response} />
                 })}
 
             </div>
