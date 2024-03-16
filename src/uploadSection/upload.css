@@ -5,11 +5,12 @@ body{
  .container{
     border-radius: 10px;
     border: 1px dashed;
-    padding: 30px;
-    height: 300px;
+    padding: 20px;
+    height: 250px;
     display: flex; 
     justify-content: center;
     align-items: center;
+    margin-bottom: 400px;
     
  }
 .filename{

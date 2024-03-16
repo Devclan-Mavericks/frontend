@@ -1,6 +1,7 @@
 import React from "react";
 import '../uploadSection/upload.css'
 import toast, { Toaster } from 'react-hot-toast';
+import Name from "./Name";
 
 const Upload = () => {
 

@@ -2,7 +2,9 @@ import { useState } from 'react';
 import Upload from './uploadSection/Upload';
 import Sidebar from './sidebar/Sidebar';
 import Query from './querySection/Query';
-import  {Toaster} from 'react-hot-toast'
+import  {Toaster} from 'react-hot-toast';
+
+
 
 function App() {
   const [uploadSection, setUploadSection] = useState(true);
