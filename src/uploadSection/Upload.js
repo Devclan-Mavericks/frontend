@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import '../uploadSection/upload.css'
 import toast from 'react-hot-toast';
 import Name from "./Name";
-import { Axios } from "axios";
 
 const Upload = () => {
 
@@ -11,33 +10,39 @@ const Upload = () => {
     date: ""
   })
 
-  
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const requestBody = new FormData();
 
   const handleFileUpload = async (e) => {
     // Logic to handle file upload
-    const files = e.target.files;
+    const files = e.target.files[0];
     // Process the files as needed
+    requestBody.append("file", files);
     console.log('Files uploaded:', files);
     
   };
 
-  const submit = () => {
-    /*const backendUrl = "#";
+  const submit = async () => {
+    const backendUrl = "https://flask-end-vp25.onrender.com/upload";
     try {
-      //let response = await Axios.post(backendUrl, files);
-      //if(response.status !== 200) {
-      //  toast.error(`Failed to upload file \n ${response.data}`)
-      //}
+      setIsSubmitting(true)
+      const response = await fetch(backendUrl, {
+        method: "POST",
+        body: requestBody,
+      })
+      if(response.status !== 200) {
+        toast.error(`Failed to upload file \n Check the console for details`)
+      }
 
-      const newFile = { filename: "Dave the diver", date: new Date().getFullYear.toString() }
-      setfilelist({...fileList, ...newFile})
-      console.log(fileList)
+      console.log(response.status);
       toast.success('Successfully!');
     } catch(error) {
       console.error("Failed to submit: ", error);
       toast.error("Network error")
-    }*/
-    toast.success("Successful!");
+    } finally {
+      setIsSubmitting(false)
+    }
     
   }
 
@@ -94,7 +99,14 @@ const Upload = () => {
               </div>
             </div>
           </div>
-          <button class="button" onClick={submit}>Submit</button>
+          {
+            isSubmitting ? 
+            <button className="button">
+                <span class="sr-only">Loading...</span>
+            </button> :
+            <button className="button" onClick={submit}>Submit</button>
+          }
+          
         </div>
 
 
