@@ -3,7 +3,7 @@ import '../uploadSection/upload.css'
 import toast from 'react-hot-toast';
 import Name from "./Name";
 
-const Upload = () => {
+const Upload = ({setFilename, setQuerySection, setUploadSection}) => {
 
   const [fileList, setfilelist] = useState({
     filename: "",
@@ -19,8 +19,8 @@ const Upload = () => {
     const files = e.target.files[0];
     // Process the files as needed
     requestBody.append("file", files);
-    console.log('Files uploaded:', files);
-    
+    console.log('File uploaded:', files);
+
   };
 
   const submit = async () => {
@@ -31,19 +31,26 @@ const Upload = () => {
         method: "POST",
         body: requestBody,
       })
-      if(response.status !== 200) {
+      if (response.status !== 200) {
         toast.error(`Failed to upload file \n Check the console for details`)
       }
 
-      console.log(response.status);
+      const result = await response.json();
+      setFilename(result.filename);
+      console.log(result.filename);
       toast.success('Successfully!');
-    } catch(error) {
+      //send user to query page
+      setTimeout(() => {
+        setQuerySection(true);
+        setUploadSection(false);
+      }, 2000)
+    } catch (error) {
       console.error("Failed to submit: ", error);
       toast.error("Network error")
     } finally {
       setIsSubmitting(false)
     }
-    
+
   }
 
 
@@ -100,13 +107,13 @@ const Upload = () => {
             </div>
           </div>
           {
-            isSubmitting ? 
-            <button className="button">
+            isSubmitting ?
+              <button className="button">
                 <span class="sr-only">Loading...</span>
-            </button> :
-            <button className="button" onClick={submit}>Submit</button>
+              </button> :
+              <button className="button" onClick={submit}>Submit</button>
           }
-          
+
         </div>
 
 
@@ -114,7 +121,7 @@ const Upload = () => {
 
       <div>
         {Object.entries(fileList).map(([key, value]) => {
-          return <Name key={key} filename={value.filename} date={value.date}/>
+          return <Name key={key} filename={value.filename} date={value.date} />
         })}
       </div>
     </div>
