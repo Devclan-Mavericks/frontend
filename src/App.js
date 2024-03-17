@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Upload from './uploadSection/Upload';
 import Sidebar from './sidebar/Sidebar';
 import Query from './querySection/Query';
@@ -16,7 +16,7 @@ function App() {
     <div>
       <Sidebar uploadSection={uploadSection} setUploadSection={setUploadSection} querySection={querySection} setQuerySection={setQuerySection}/>
     </div>
-    {uploadSection && <Upload setFilename={setFilename} setQuerySection={setQuerySection} setUploadSection={setUploadSection}/>}
+    {uploadSection && <Upload filename={filename} setFilename={setFilename} setQuerySection={setQuerySection} setUploadSection={setUploadSection}/>}
     {querySection && <Query filename={filename}/>}
     <Toaster position="bottom-center" color="#1dd463" />
    </div>
